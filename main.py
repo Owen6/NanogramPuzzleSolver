@@ -52,6 +52,9 @@ def loadExampleBoard(tempBoard, vertices):
 def possibleSolutions():
 
     rule = [2,2]
+    if(listSum(rule) > gridSize):
+        print('Not a valid rule')
+        return
     initialState = initialize(rule)
     print(initialState)
 
@@ -62,7 +65,7 @@ def initialize(rule):
     index = 0
     itemAdded = False
     initialState = []
-    for i in range(gridSize):
+    for i in range(gridSize - len(rule)):
         if(index < len(rule) and itemAdded == False):
             initialState.append(rule[index])
             index = index + 1
