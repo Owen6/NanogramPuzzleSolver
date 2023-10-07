@@ -51,12 +51,35 @@ def loadExampleBoard(tempBoard, vertices):
 
 def possibleSolutions():
 
-    rule = [2,2]
+    rule = [2,3]
     if(listSum(rule) > gridSize):
         print('Not a valid rule')
         return
     initialState = initialize(rule)
-    print(initialState)
+
+    possibleSol = []
+    possibleSol.append(initialState)
+
+    final = False
+    temp = []
+    for i in range(len(rule)):
+        while final == False:
+            temp = possibleSol[-1].copy()
+            tempTwo = []
+            tempTwo = temp.copy()
+            for j in range(len(possibleSol[i])):
+                if temp[-1*(j+1)] != 'X':
+                    #print(possibleSol)
+                    temp[-1*(j+1)] = tempTwo[-1*(j)]
+                    temp[-1*(j)] = tempTwo[-1*(j+1)]
+                    break
+            if possibleSol[-1][-1] != 'X':
+                final = True
+            else:
+                possibleSol.append(temp)
+            #final = True
+    for k in range(len(possibleSol)):
+        print(possibleSol[k])
 
 
 def initialize(rule):
