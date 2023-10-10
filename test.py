@@ -20,8 +20,9 @@ def main():
     #    if(ruleInList(rule,combinations[i])):
     #        if(not ruleInList(combinations[i],validCombos)):
     #            validCombos.append(combinations[i])
-
-    print(validCombos)
+    for k in validCombos:
+        #if k[0] == 2:
+        print(k)
     #print(combinations)
     print(len(validCombos), len(combinations))
     #print(ruleInList(rule,sample))
@@ -39,8 +40,17 @@ def ruleInList(x,y):
         if temp[x[i]] == temp2[x[i]]:
             valid = valid + 1
             #order.append(x[i])
-    return len(instances) > 0 and valid == len(x) #and x == order
+    return isSublist(x,y) and valid == len(x)
+    #return len(instances) > 0 and valid == len(x) #and x == order
 
+def isSublist(A,B):
+    if not A:
+        return True
+    if not B:
+        return False
+    if A[0] == B[0]:
+        return isSublist(A[1:], B[1:])
+    return isSublist(A,B[1:])
 
 if __name__ == "__main__":
     main()
